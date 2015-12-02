@@ -1,0 +1,1 @@
+My Java Solution to HiHocoder
