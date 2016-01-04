@@ -27,7 +27,17 @@ public class Main {
 		iterator.count++;
 	}
 	
-	private static void count(TrieNode root){		
+	private static void count(TrieNode root){	
+//		if(root.count <= 5){
+//			ret++;
+//		}else{
+//			for(int i = 0; i < 26; i++){
+//				if(root.sons[i] != null){
+//					count(root.sons[i]);
+//				}
+//			}
+//		}		
+		
 		Queue<TrieNode> queue = new LinkedList<TrieNode>();
 		queue.add(root);
 		while(!queue.isEmpty()){
