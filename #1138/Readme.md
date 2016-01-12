@@ -1,4 +1,5 @@
 ##HiHoCoder题目链接：[#1138 : Islands Travel](http://hihocoder.com/problemset/problem/1138?sid=630063)
+
 >###描述
 There are N islands on a planet whose coordinates are (X1, Y1), (X2, Y2), (X3, Y3) ..., (XN, YN). You starts at the 1st island (X1, Y1) and your destination is the n-th island (XN, YN). Travelling between i-th and j-th islands will cost you min{|Xi-Xj|, |Yi-Yj|} (|a| denotes the absolute value of a. min{a, b} denotes the smaller value between a and b) gold coins. You want to know what is the minimum cost to travel from the 1st island to the n-th island.
 >###输入
@@ -15,6 +16,7 @@ Output the minimum cost.
     7 6
 >###样例输出
     2
+    
 ##分析
 **构图：**</br>
 根据题目容易想到使用单源最短路径算法，源点是1st island，任意两个点之间均有一条路径，路径的权值即为两个island的cost，这样构造的图边将会非常稠密，Dijkstra算法会导致TLE。其实对于一个island而言，我们仅仅需要考虑island X方向向左向右最近的两个island，Y方向向上向下最近的两个island一共四个island即可。这样大大减少了所构图的边的数目，然后使用Dijkstra或者SPFA算法即可。</br>
@@ -26,6 +28,7 @@ Output the minimum cost.
 1. 初始化：源点距离初始化为0，其他节点距离初始化为正无穷，将源点加入FIFO队列Q，构造集合S表示节点是否在FIFO队列中，将源点加入S</br>
 2. 松弛：从FIFO队列中弹出队首节点n，将n从S中删除，松弛n的每个邻居u的距离，松弛后，判断u是否在S中，如果不在，将u加入Q和S，如果在，则不加入。重复该步骤，直至Q为空。</br>
 ***tips:***SPFA与Dijkstra非常像，不同之处：1. SPFA使用普通的FIFO队列，Dijkstra使用优先队列 2. SPFA的集合S表示节点是否在队列中，Dijkstra的集合S表示节点的最短距离已经确定 3。Dijkstra是闻名国际的单源最短路径算法，SPFA算法使用的是Bellman的队列优化的思想，在国际上不认可，并且有实验表明SPFA算法运行时间非常不稳定，其他关于SPFA算法请自行Google
+
 ##源代码
 	public class Main {
 		private static class Island{
